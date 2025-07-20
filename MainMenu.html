@@ -71,7 +71,7 @@
       transform: translate(-50%, -50%);
       max-width: 700px;
       width: 90%;
-      height: 70%; /* Adjust this to cover at least the box */
+      height: 70%;
       background: rgba(255, 255, 255, 0.85);
       border-radius: 10px;
       box-shadow: 0 0 15px rgba(0,0,0,0.3);
@@ -108,7 +108,7 @@
 
     /* Bottom left for additional text */
     #extra-text {
-      grid-column: 2 / 3;
+      grid-column: 1 / 2;
       grid-row: 2 / 3;
       white-space: pre-line;
       align-self: center;
@@ -117,7 +117,7 @@
 
     /* Doctor image bottom right */
     #doctor-image {
-      grid-column: 1 / 2;
+      grid-column: 2 / 3;
       grid-row: 2 / 3;
       justify-self: center;
       align-self: center;
@@ -204,26 +204,30 @@
         menuContainer.classList.remove("top-layout");
         contentContainer.style.display = "none";
         content.innerText = "Choose a category to view";
-      } else if (selection === "Home") {
+      } else if (selection === "General") {
         menuContainer.classList.add("top-layout");
         contentContainer.style.display = "grid";
 
-        content.innerText = `Welcome to Medical City Hospital!
-Providing compassionate care with cutting-edge technology.
-Your health and well-being are our top priorities.
-Thank you for trusting us with your care.`;
+        content.innerText = `Our General Ward is designed for your recovery and well-being.
+Whether you're recovering from illness, surgery, or need monitored care, our compassionate medical team and modern facilities ensure you receive the best treatment in a safe, hygienic environment.`;
 
-        extraTextDiv.innerText = "Our Doctors and Nurse at Medical City are the best at their fields.";
+        extraTextDiv.innerText = `Why Choose Our General Ward?
+
+✔ 24/7 Expert Care – Skilled doctors and nurses dedicated to your recovery.
+✔ Spacious & Clean Rooms – Comfortable beds, proper ventilation, and infection-free zones.
+✔ Affordable Rates – Quality healthcare without financial stress.
+✔ Nutritious Meals – Tailored diets to speed up your healing.
+✔ Family Support – Flexible visiting hours and attentive staff.`;
 
         // Hospital image on top right
         const hospitalImg = document.createElement("img");
-        hospitalImg.src = "Hospital1.jpg";
+        hospitalImg.src = "nurse1.jpg"; // Ensure you have nurse1.jpg image
         hospitalImg.alt = "Hospital Image";
         hospitalImageDiv.appendChild(hospitalImg);
 
         // Doctor image bottom right
         const doctorImg = document.createElement("img");
-        doctorImg.src = "doc1.jpg";
+        doctorImg.src = "nurse2.jpg"; // Ensure you have nurse2.jpg image
         doctorImg.alt = "Doctor Image";
         doctorImageDiv.appendChild(doctorImg);
 
@@ -241,10 +245,6 @@ Thank you for trusting us with your care.`;
         let imageUrls = [];
 
         switch (selection) {
-          case "General":
-            text = "General Ward: Our doctors and nurses provide exceptional care.";
-            imageUrls = ["https://via.placeholder.com/300x200.png?text=General"];
-            break;
           case "ICU":
             text = "ICU: Critical care and constant monitoring.";
             imageUrls = ["https://via.placeholder.com/300x200.png?text=ICU"];
