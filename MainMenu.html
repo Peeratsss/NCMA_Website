@@ -70,19 +70,30 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      max-width: 400px;
-      text-align: center;
+      max-width: 700px;
+      width: 90%;
+      text-align: left;
       display: none; /* Hidden initially */
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      padding: 20px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      justify-content: center;
     }
 
     #content {
+      flex: 1;
       font-size: 18px;
       color: #000;
-      margin-top: 10px;
+      white-space: pre-line; /* to preserve line breaks */
     }
 
     #image-container {
-      margin-top: 15px;
+      flex: 1;
+      max-width: 300px;
     }
 
     #image-container img {
@@ -99,22 +110,21 @@
     <div class="top-controls">
       <button><a href="Patients.html">Patients</a></button>
 
-    <select id="mySelect" onchange="updateContent()">
-  <option value="" disabled selected>Categories</option>
-  <option value="Home">Home</option>
-  <option value="General">General</option>
-  <option value="ICU">ICU</option>
-  <option value="Pediatric">Pediatric</option>
-  <option value="Infectious">Infectious</option>
-  <option value="Private">Private</option>
-</select>
-
+      <select id="mySelect" onchange="updateContent()">
+        <option value="" disabled selected>Categories</option>
+        <option value="Home">Home</option>
+        <option value="General">General</option>
+        <option value="ICU">ICU</option>
+        <option value="Pediatric">Pediatric</option>
+        <option value="Infectious">Infectious</option>
+        <option value="Private">Private</option>
+      </select>
 
       <button><a href="Login.html">Logout</a></button>
     </div>
   </div>
 
-  <!-- New container for content and image -->
+  <!-- Content container with flex layout -->
   <div id="content-container">
     <div id="content">Choose a category to view</div>
 
@@ -137,7 +147,10 @@
 
       switch (selection) {
         case "Home":
-          text = "Medical City Hospital.";
+          text = `Welcome to Medical City Hospital!
+Providing compassionate care with cutting-edge technology.
+Your health and well-being are our top priorities.
+Thank you for trusting us with your care.`;
           imageUrl = "Hospital1.jpg";
           break;
         case "General":
@@ -167,7 +180,7 @@
 
       if (selection) {
         menuContainer.classList.add("top-layout");
-        contentContainer.style.display = "block";
+        contentContainer.style.display = "flex";
       } else {
         menuContainer.classList.remove("top-layout");
         contentContainer.style.display = "none";
