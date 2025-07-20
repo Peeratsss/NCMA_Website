@@ -208,20 +208,46 @@
         menuContainer.classList.add("top-layout");
         contentContainer.style.display = "grid";
 
+        content.innerText = `Our General Ward is designed for your recovery and well-being.
+Whether you're recovering from illness, surgery, or need monitored care, our compassionate medical team and modern facilities ensure you receive the best treatment in a safe, hygienic environment.`;
+
+        extraTextDiv.innerText = `Why Choose Our General Ward?
+
+✔ 24/7 Expert Care – Skilled doctors and nurses dedicated to your recovery.
+✔ Spacious & Clean Rooms – Comfortable beds, proper ventilation, and infection-free zones.
+✔ Affordable Rates – Quality healthcare without financial stress.
+✔ Nutritious Meals – Tailored diets to speed up your healing.
+✔ Family Support – Flexible visiting hours and attentive staff.`;
+
+        // Hospital image on top right (nurse1.jpg)
+        const hospitalImg = document.createElement("img");
+        hospitalImg.src = "nurse1.jpg"; // Ensure you have nurse1.jpg image
+        hospitalImg.alt = "Hospital Image";
+        hospitalImageDiv.appendChild(hospitalImg);
+
+        // Doctor image bottom right (nurse2.jpg)
+        const doctorImg = document.createElement("img");
+        doctorImg.src = "nurse2.jpg"; // Ensure you have nurse2.jpg image
+        doctorImg.alt = "Doctor Image";
+        doctorImageDiv.appendChild(doctorImg);
+
+      } else if (selection === "ICU") {
+        menuContainer.classList.add("top-layout");
+        contentContainer.style.display = "grid";
+
         content.innerText = `Expert care, compassionate healing—our medical team is dedicated to your health around the clock. Trust skilled professionals who put your well-being first.`;
 
         extraTextDiv.innerText = `Advanced treatment, personalized care—your health is our priority. Experience excellence in medical services with state-of-the-art facilities.`;
 
-        // Hospital image on top right (work1.jpg)
+        // ICU images (work1.jpg and work2.jpg)
         const hospitalImg = document.createElement("img");
         hospitalImg.src = "work1.jpg"; // Ensure you have work1.jpg image
-        hospitalImg.alt = "Hospital Image";
+        hospitalImg.alt = "ICU Image";
         hospitalImageDiv.appendChild(hospitalImg);
 
-        // Doctor image bottom right (work2.jpg)
         const doctorImg = document.createElement("img");
         doctorImg.src = "work2.jpg"; // Ensure you have work2.jpg image
-        doctorImg.alt = "Doctor Image";
+        doctorImg.alt = "ICU Image";
         doctorImageDiv.appendChild(doctorImg);
 
       } else if (selection === "Home") {
