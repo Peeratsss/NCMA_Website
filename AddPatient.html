@@ -78,9 +78,9 @@
 
     <label for="address">Address</label>
     <input id="address" class="input" type="text" placeholder="ex. Quezon City" name="Address" />
-	<label for="contactNo">Contact No</label>
-<input id="contactNo" class="input" type="text" placeholder="ex. 09123456789" name="ContactNo" required />
 
+    <label for="contactNo">Contact No</label>
+    <input id="contactNo" class="input" type="text" placeholder="ex. 09123456789" name="ContactNo" required />
 
     <label>Gender</label>
     <label class="radio">
@@ -119,40 +119,38 @@
   </form>
 
   <script>
- 
- const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby-4hbmHkzu70Ua1D_QN15mkMmuGwURpKfHs3Y6PVXQlNMw9suV5ijlHJWwg-ClFaQ5/exec;
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwmnr4i5PCJob0x_eI1ruBllhorQ7UAEbpQu9j67wDYxXln2cf_GiLZmI9ZEVQ5dVT1/exec';
 
-document.getElementById('form').addEventListener('submit', function(event) {
-  event.preventDefault();
+    document.getElementById('form').addEventListener('submit', function(event) {
+      event.preventDefault();
 
-  const formData = new FormData(this);
-  const dataObj = {};
+      const formData = new FormData(this);
+      const dataObj = {};
 
-  formData.forEach((value, key) => {
-    dataObj[key] = value;
-  });
+      formData.forEach((value, key) => {
+        dataObj[key] = value;
+      });
 
-  fetch(SCRIPT_URL, {
-    method: 'POST',
-    mode: 'cors',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(dataObj)
-  })
-  .then(response => response.json())
-  .then(result => {
-    alert(result.message);
-    if (result.status === 'success') {
-      this.reset();
-    }
-  })
-  .catch(error => {
-    console.error('Error!', error.message);
-    alert('Failed to submit. Please try again.');
-  });
-});
-
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dataObj)
+      })
+      .then(response => response.json())
+      .then(result => {
+        alert(result.message);
+        if (result.status === 'success') {
+          this.reset();
+        }
+      })
+      .catch(error => {
+        console.error('Error!', error.message);
+        alert('Failed to submit. Please try again.');
+      });
+    });
   </script>
 </body>
 </html>
