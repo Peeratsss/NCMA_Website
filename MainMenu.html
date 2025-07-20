@@ -1,95 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Welcome!</title>
   <style>
-  body {
-  background-color: rgba(128, 0, 128, 0.3);
-  font-family: Arial, sans-serif;
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    body {
+      background-color: rgba(128, 0, 128, 0.3);
+      font-family: Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
 
-.menu-container {
-  width: 100%;
-  max-width: 400px;
-  padding: 25px 20px;
-  background-color: rgba(0, 0, 0, 0.1);
-  border: 1px solid black;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+    .menu-container {
+      width: 100%;
+      max-width: 400px;
+      padding: 25px 20px;
+      background-color: rgba(0, 0, 0, 0.1);
+      border: 1px solid black;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
 
-.top-controls {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 20px;
-}
+    /* When the menu moves to the top */
+    .top-layout {
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: auto;
+      max-width: 400px;
+      padding: 15px 20px;
+      background-color: rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
 
-button, select {
-  padding: 10px 15px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
-  border: 1px solid #333;
-  background-color: #f0f0f0;
-}
+    .top-controls {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
 
-button a {
-  text-decoration: none;
-  color: black;
-}
+    button, select {
+      padding: 10px 15px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      border: 1px solid #333;
+      background-color: #f0f0f0;
+    }
 
-#content {
-  font-size: 18px;
-  color: #000;
-  margin-top: 10px;
-}
+    button a {
+      text-decoration: none;
+      color: black;
+    }
 
-#image-container {
-  margin-top: 15px;
-}
+    /* Content container for the text and image */
+    #content-container {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 400px;
+      text-align: center;
+      display: none; /* Hidden initially */
+    }
 
-#image-container img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-  display: none;
-}
-</style>
+    #content {
+      font-size: 18px;
+      color: #000;
+      margin-top: 10px;
+    }
+
+    #image-container {
+      margin-top: 15px;
+    }
+
+    #image-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+      display: none;
+    }
+  </style>
 </head>
 <body>
-  <div class="wrapper" id="wrapper">
-    <div class="menu-container">
-      <div class="top-controls">
-        <button><a href="Patients.html">Patients</a></button>
+  <div class="menu-container" id="menuContainer">
+    <div class="top-controls">
+      <button><a href="Patients.html">Patients</a></button>
 
-        <select id="mySelect" onchange="updateContent()">
-  <option value="" disabled selected>Choose category</option>
-  <option value="Home">Home</option>
-  <option value="General">General</option>
-  <option value="ICU">ICU</option>
-  <option value="Pediatric">Pediatric</option>
-  <option value="Infectious">Infectious</option>
-  <option value="Private">Private</option>
-</select>
+      <select id="mySelect" onchange="updateContent()">
+        <option value="" disabled selected>Choose category</option>
+        <option value="Home">Home</option>
+        <option value="General">General</option>
+        <option value="ICU">ICU</option>
+        <option value="Pediatric">Pediatric</option>
+        <option value="Infectious">Infectious</option>
+        <option value="Private">Private</option>
+      </select>
 
-        <button><a href="Login.html">Logout</a></button>
-      </div>
+      <button><a href="Login.html">Logout</a></button>
+    </div>
+  </div>
 
-      <div id="content">Choose a category to view</div>
+  <!-- New container for content and image -->
+  <div id="content-container">
+    <div id="content">Choose a category to view</div>
 
-      <div id="image-container">
-        <img id="categoryImage" src="" alt="Category Image">
-      </div>
+    <div id="image-container">
+      <img id="categoryImage" src="" alt="Category Image" />
     </div>
   </div>
 
@@ -98,7 +127,8 @@ button a {
       const selection = document.getElementById("mySelect").value;
       const content = document.getElementById("content");
       const image = document.getElementById("categoryImage");
-      const wrapper = document.getElementById("wrapper");
+      const menuContainer = document.getElementById("menuContainer");
+      const contentContainer = document.getElementById("content-container");
 
       let text = "";
       let imageUrl = "";
@@ -130,12 +160,17 @@ button a {
           imageUrl = "https://via.placeholder.com/300x200.png?text=Private";
           break;
         default:
-          text = "Select a category to view details.";
+          text = "Choose a category to view";
           showImage = false;
       }
 
-      // Move the layout to the top after selection
-      wrapper.classList.add("top-layout");
+      if (selection) {
+        menuContainer.classList.add("top-layout");
+        contentContainer.style.display = "block";
+      } else {
+        menuContainer.classList.remove("top-layout");
+        contentContainer.style.display = "none";
+      }
 
       content.innerText = text;
 
@@ -148,12 +183,9 @@ button a {
     }
 
     window.onload = () => {
-      // Keep menu centered initially
       document.getElementById("categoryImage").style.display = "none";
+      document.getElementById("content-container").style.display = "none";
     };
   </script>
 </body>
-
-
-
 </html>
