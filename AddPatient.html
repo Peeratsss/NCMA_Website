@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>	
+<head>  
   <style>
     body {
       background-color: rgba(128, 0, 128, 0.3);
@@ -60,11 +60,26 @@
       text-decoration: none;
       color: black;
     }
+
+    /* Popup style */
+    #popup {
+      display: none;
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: normal;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      z-index: 1000;
+    }
   </style>
 </head>
 <body>
 
-  <form method="post" class="container" action="https://script.google.com/macros/s/AKfycbwmnr4i5PCJob0x_eI1ruBllhorQ7UAEbpQu9j67wDYxXln2cf_GiLZmI9ZEVQ5dVT1/exec" name="contact-form">
+  <form method="post" class="container" name="contact-form" id="contact-form">
     <h4>Add Patient</h4>
 
     <label for="lastName">Last Name</label>
@@ -80,40 +95,4 @@
     <input id="age" type="number" name="Age" placeholder="Your Age" min="0" required>
 
     <label for="address">Address</label>
-    <input id="address" type="text" name="Address" placeholder="ex. Quezon City" required>
-
-    <label for="contactNo">Contact No</label>
-    <input id="contactNo" type="text" name="ContactNo" placeholder="ex. 09123456789" required>
-
-    <label>Gender</label>
-    <label class="radio">
-      <input type="radio" name="Gender" value="Male" required> Male
-    </label>
-    <label class="radio">
-      <input type="radio" name="Gender" value="Female"> Female
-    </label>
-
-    <label for="dob">Date of Birth</label>
-    <input id="dob" type="date" name="DOB" required>
-
-    <label for="ward">Ward</label>
-    <select id="ward" name="Ward" required>
-      <option>ICU</option>
-      <option>General</option>
-      <option>Private</option>
-    </select>
-
-    <div style="margin-top: 15px;">
-      <button class="button-primary" type="submit">Add</button>
-      <button class="button-danger" type="button" onclick="document.forms['contact-form'].reset();">Cancel</button>
-    </div>
-
-    <div style="margin-top: 20px;">
-      <button type="button"><a href="javascript:history.back()">Go Back</a></button>
-      <button type="button"><a href="Login.html">Home</a></button>
-    </div>
-  </form>
-
-</body>
-</html>
-	
+    <input id="address" type="text" name="Address" placeholder="ex. Quezon City" r
