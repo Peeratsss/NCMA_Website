@@ -27,7 +27,6 @@
       transition: all 0.3s ease;
     }
 
-    /* When the menu moves to the top */
     .top-layout {
       position: fixed;
       top: 10px;
@@ -64,7 +63,6 @@
       color: black;
     }
 
-    /* Content container for the text and image */
     #content-container {
       position: fixed;
       top: 50%;
@@ -73,7 +71,7 @@
       max-width: 700px;
       width: 90%;
       text-align: left;
-      display: none; /* Hidden initially */
+      display: none;
       background: rgba(255, 255, 255, 0.85);
       border-radius: 10px;
       box-shadow: 0 0 15px rgba(0,0,0,0.3);
@@ -88,7 +86,7 @@
       flex: 1;
       font-size: 18px;
       color: #000;
-      white-space: pre-line; /* to preserve line breaks */
+      white-space: pre-line;
     }
 
     #image-container {
@@ -96,12 +94,13 @@
       max-width: 300px;
     }
 
-    #image-container img {
+    #categoryImages img {
       max-width: 100%;
       height: auto;
       border-radius: 10px;
       box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-      display: none;
+      margin-bottom: 10px;
+      display: block;
     }
   </style>
 </head>
@@ -111,26 +110,24 @@
       <button><a href="Patients.html">Patients</a></button>
 
       <select id="mySelect" onchange="updateContent()">
-  <option value="" disabled selected hidden>Categories</option>
-  <option value="Home">Home</option>
-  <option value="General">General</option>
-  <option value="ICU">ICU</option>
-  <option value="Pediatric">Pediatric</option>
-  <option value="Infectious">Infectious</option>
-  <option value="Private">Private</option>
-</select>
-
+        <option value="" disabled selected hidden>Categories</option>
+        <option value="Home">Home</option>
+        <option value="General">General</option>
+        <option value="ICU">ICU</option>
+        <option value="Pediatric">Pediatric</option>
+        <option value="Infectious">Infectious</option>
+        <option value="Private">Private</option>
+      </select>
 
       <button><a href="Login.html">Logout</a></button>
     </div>
   </div>
 
-  <!-- Content container with flex layout -->
   <div id="content-container">
     <div id="content">Choose a category to view</div>
 
     <div id="image-container">
-      <img id="categoryImage" src="" alt="Category Image" />
+      <div id="categoryImages"></div>
     </div>
   </div>
 
@@ -138,46 +135,44 @@
     function updateContent() {
       const selection = document.getElementById("mySelect").value;
       const content = document.getElementById("content");
-      const image = document.getElementById("categoryImage");
       const menuContainer = document.getElementById("menuContainer");
       const contentContainer = document.getElementById("content-container");
+      const imageContainer = document.getElementById("categoryImages");
 
       let text = "";
-      let imageUrl = "";
-      let showImage = true;
+      let imageUrls = [];
 
       switch (selection) {
         case "Home":
-          imageUrl = "doc1.jpg";
           text = `Welcome to Medical City Hospital!
 Providing compassionate care with cutting-edge technology.
 Your health and well-being are our top priorities.
 Thank you for trusting us with your care.`;
-          imageUrl = "Hospital1.jpg";
+          imageUrls = ["Hospital1.jpg", "doc1.jpg"];
           break;
         case "General":
-          text = "General Ward: Our Doctors and Nurses will bring great care.";
-          imageUrl = "";
+          text = "General Ward: Our doctors and nurses provide exceptional care.";
+          imageUrls = ["https://via.placeholder.com/300x200.png?text=General"];
           break;
         case "ICU":
           text = "ICU: Critical care and constant monitoring.";
-          imageUrl = "https://via.placeholder.com/300x200.png?text=ICU";
+          imageUrls = ["https://via.placeholder.com/300x200.png?text=ICU"];
           break;
         case "Pediatric":
           text = "Pediatric Ward: Care for infants and children.";
-          imageUrl = "https://via.placeholder.com/300x200.png?text=Pediatric";
+          imageUrls = ["https://via.placeholder.com/300x200.png?text=Pediatric"];
           break;
         case "Infectious":
           text = "Infectious Ward: Isolation for contagious diseases.";
-          imageUrl = "https://via.placeholder.com/300x200.png?text=Infectious";
+          imageUrls = ["https://via.placeholder.com/300x200.png?text=Infectious"];
           break;
         case "Private":
           text = "Private Ward: Comfortable private rooms.";
-          imageUrl = "https://via.placeholder.com/300x200.png?text=Private";
+          imageUrls = ["https://via.placeholder.com/300x200.png?text=Private"];
           break;
         default:
           text = "Choose a category to view";
-          showImage = false;
+          imageUrls = [];
       }
 
       if (selection) {
@@ -190,16 +185,20 @@ Thank you for trusting us with your care.`;
 
       content.innerText = text;
 
-      if (showImage && imageUrl) {
-        image.src = imageUrl;
-        image.style.display = "block";
-      } else {
-        image.style.display = "none";
-      }
+      // Clear old images
+      imageContainer.innerHTML = "";
+
+      // Add new images
+      imageUrls.forEach(url => {
+        const img = document.createElement("img");
+        img.src = url;
+        img.alt = "Category Image";
+        imageContainer.appendChild(img);
+      });
     }
 
     window.onload = () => {
-      document.getElementById("categoryImage").style.display = "none";
+      document.getElementById("categoryImages").innerHTML = "";
       document.getElementById("content-container").style.display = "none";
     };
   </script>
