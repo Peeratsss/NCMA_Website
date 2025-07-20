@@ -143,22 +143,23 @@
       display: block;
     }
 
-    .text-left {
-      grid-column: 1 / 2;
-      grid-row: 1 / 2;
-    }
-
-    .text-right {
+    /* Additional classes to swap image and text positions for ICU and other cases */
+    .icucategory .text-left {
       grid-column: 2 / 3;
-      grid-row: 1 / 2;
+      grid-row: 2 / 3;
     }
 
-    .image-left {
+    .icucategory .text-right {
       grid-column: 1 / 2;
       grid-row: 2 / 3;
     }
 
-    .image-right {
+    .icucategory .image-left {
+      grid-column: 1 / 2;
+      grid-row: 2 / 3;
+    }
+
+    .icucategory .image-right {
       grid-column: 2 / 3;
       grid-row: 2 / 3;
     }
@@ -226,55 +227,10 @@
         menuContainer.classList.remove("top-layout");
         contentContainer.style.display = "none";
         content.innerText = "Choose a category to view";
-      } else if (selection === "Private") {
-        menuContainer.classList.add("top-layout");
-        contentContainer.style.display = "grid";
-
-        content.innerText = `Experience premium healthcare in our private wards—personalized attention, luxury amenities, and exclusive care tailored to your comfort and recovery.`;
-
-        extraTextDiv.innerText = `Your health deserves the finest—our private wards offer VIP treatment with dedicated staff, advanced facilities, and a serene healing environment.`;
-
-        // Hospital image on top right (ward1.jpg)
-        const hospitalImg = document.createElement("img");
-        hospitalImg.src = "ward1.jpg"; // Ensure you have ward1.jpg image
-        hospitalImg.alt = "Private Ward Image";
-        hospitalImageDiv.appendChild(hospitalImg);
-
-        // Doctor image bottom right (ward2.jpg)
-        const doctorImg = document.createElement("img");
-        doctorImg.src = "ward2.jpg"; // Ensure you have ward2.jpg image
-        doctorImg.alt = "Private Ward Image";
-        doctorImageDiv.appendChild(doctorImg);
-
-      } else if (selection === "General") {
-        menuContainer.classList.add("top-layout");
-        contentContainer.style.display = "grid";
-
-        content.innerText = `Our General Ward is designed for your recovery and well-being.
-Whether you're recovering from illness, surgery, or need monitored care, our compassionate medical team and modern facilities ensure you receive the best treatment in a safe, hygienic environment.`;
-
-        extraTextDiv.innerText = `Why Choose Our General Ward?
-
-✔ 24/7 Expert Care – Skilled doctors and nurses dedicated to your recovery.
-✔ Spacious & Clean Rooms – Comfortable beds, proper ventilation, and infection-free zones.
-✔ Affordable Rates – Quality healthcare without financial stress.
-✔ Nutritious Meals – Tailored diets to speed up your healing.
-✔ Family Support – Flexible visiting hours and attentive staff.`;
-
-        // Hospital image on top right (nurse1.jpg)
-        const hospitalImg = document.createElement("img");
-        hospitalImg.src = "nurse1.jpg"; // Ensure you have nurse1.jpg image
-        hospitalImg.alt = "Hospital Image";
-        hospitalImageDiv.appendChild(hospitalImg);
-
-        // Doctor image bottom right (nurse2.jpg)
-        const doctorImg = document.createElement("img");
-        doctorImg.src = "nurse2.jpg"; // Ensure you have nurse2.jpg image
-        doctorImg.alt = "Doctor Image";
-        doctorImageDiv.appendChild(doctorImg);
-
       } else if (selection === "ICU") {
+        // Adding special ICU category classes for swapping content layout
         menuContainer.classList.add("top-layout");
+        contentContainer.classList.add("icucategory");
         contentContainer.style.display = "grid";
 
         content.innerText = `Expert care, compassionate healing—our medical team is dedicated to your health around the clock. Trust skilled professionals who put your well-being first.`;
@@ -292,69 +248,7 @@ Whether you're recovering from illness, surgery, or need monitored care, our com
         doctorImg.alt = "ICU Image";
         doctorImageDiv.appendChild(doctorImg);
 
-      } else if (selection === "Pediatric") {
-        menuContainer.classList.add("top-layout");
-        contentContainer.style.display = "grid";
-
-        content.innerText = `Expert care, compassionate healing—our medical team is dedicated to your health around the clock. Trust skilled professionals who put your well-being first.`;
-
-        extraTextDiv.innerText = `A healing environment designed just for kids—where advanced medicine meets warmth and compassion. Because every child deserves the best care possible.`;
-
-        // Pediatric images (ped1.jpg and ped2.jpg)
-        const hospitalImg = document.createElement("img");
-        hospitalImg.src = "ped1.jpg"; // Ensure you have ped1.jpg image
-        hospitalImg.alt = "Pediatric Image";
-        hospitalImageDiv.appendChild(hospitalImg);
-
-        const doctorImg = document.createElement("img");
-        doctorImg.src = "ped2.jpg"; // Ensure you have ped2.jpg image
-        doctorImg.alt = "Pediatric Image";
-        doctorImageDiv.appendChild(doctorImg);
-
-      } else if (selection === "Infectious") {
-        menuContainer.classList.add("top-layout");
-        contentContainer.style.display = "grid";
-
-        content.innerText = `Expert containment and compassionate care—our infectious disease team is trained to handle outbreaks with precision and safety. Your health and community protection are our top priorities.`;
-
-        extraTextDiv.innerText = `Advanced isolation protocols and cutting-edge treatment—we provide secure, specialized care for infectious conditions. Trust in our sterile environment and dedicated medical team for your recovery.`;
-
-        // Infectious images (inf1.jpg and inf2.jpg)
-        const hospitalImg = document.createElement("img");
-        hospitalImg.src = "inf1.jpg"; // Ensure you have inf1.jpg image
-        hospitalImg.alt = "Infectious Image";
-        hospitalImageDiv.appendChild(hospitalImg);
-
-        const doctorImg = document.createElement("img");
-        doctorImg.src = "inf2.jpg"; // Ensure you have inf2.jpg image
-        doctorImg.alt = "Infectious Image";
-        doctorImageDiv.appendChild(doctorImg);
-
-      } else if (selection === "Home") {
-        // For home category, reset to original content
-        menuContainer.classList.add("top-layout");
-        contentContainer.style.display = "grid";
-
-        content.innerText = `Welcome to Medical City Hospital!
-Providing compassionate care with cutting-edge technology.
-Your health and well-being are our top priorities.
-Thank you for trusting us with your care.`;
-
-        extraTextDiv.innerText = "Our Doctors and Nurses at Medical City are the best at their fields.";
-
-        // Hospital image on top right
-        const hospitalImg = document.createElement("img");
-        hospitalImg.src = "Hospital1.jpg"; // Ensure you have Hospital1.jpg image
-        hospitalImg.alt = "Hospital Image";
-        hospitalImageDiv.appendChild(hospitalImg);
-
-        // Doctor image bottom right
-        const doctorImg = document.createElement("img");
-        doctorImg.src = "doc1.jpg"; // Ensure you have doc1.jpg image
-        doctorImg.alt = "Doctor Image";
-        doctorImageDiv.appendChild(doctorImg);
-
-      } else if (selection) {
+      } else {
         menuContainer.classList.add("top-layout");
         contentContainer.style.display = "grid";
 
@@ -368,50 +262,82 @@ Thank you for trusting us with your care.`;
         let imageUrls = [];
 
         switch (selection) {
-          case "ICU":
-            text = "ICU: Critical care and constant monitoring.";
-            imageUrls = ["https://via.placeholder.com/300x200.png?text=ICU"];
+          case "General":
+            content.innerText = `Our General Ward is designed for your recovery and well-being.
+Whether you're recovering from illness, surgery, or need monitored care, our compassionate medical team and modern facilities ensure you receive the best treatment in a safe, hygienic environment.`;
+            extraTextDiv.innerText = `Why Choose Our General Ward?
+
+✔ 24/7 Expert Care – Skilled doctors and nurses dedicated to your recovery.
+✔ Spacious & Clean Rooms – Comfortable beds, proper ventilation, and infection-free zones.
+✔ Affordable Rates – Quality healthcare without financial stress.
+✔ Nutritious Meals – Tailored diets to speed up your healing.
+✔ Family Support – Flexible visiting hours and attentive staff.`;
+            // General images (nurse1.jpg and nurse2.jpg)
+            const genHospitalImg = document.createElement("img");
+            genHospitalImg.src = "nurse1.jpg"; // Ensure you have nurse1.jpg image
+            genHospitalImg.alt = "General Ward Image";
+            hospitalImageDiv.appendChild(genHospitalImg);
+
+            const genDoctorImg = document.createElement("img");
+            genDoctorImg.src = "nurse2.jpg"; // Ensure you have nurse2.jpg image
+            genDoctorImg.alt = "General Ward Image";
+            doctorImageDiv.appendChild(genDoctorImg);
             break;
+
           case "Pediatric":
-            text = "Pediatric Ward: Care for infants and children.";
-            imageUrls = ["https://via.placeholder.com/300x200.png?text=Pediatric"];
+            content.innerText = `Expert care, compassionate healing—our pediatric team specializes in keeping children healthy and happy. From check-ups to treatments, we’re here for every milestone.`;
+            extraTextDiv.innerText = `A healing environment designed just for kids—where advanced medicine meets warmth and compassion. Because every child deserves the best care possible.`;
+            // Pediatric images (ped1.jpg and ped2.jpg)
+            const pediHospitalImg = document.createElement("img");
+            pediHospitalImg.src = "ped1.jpg"; // Ensure you have ped1.jpg image
+            pediHospitalImg.alt = "Pediatric Image";
+            hospitalImageDiv.appendChild(pediHospitalImg);
+
+            const pediDoctorImg = document.createElement("img");
+            pediDoctorImg.src = "ped2.jpg"; // Ensure you have ped2.jpg image
+            pediDoctorImg.alt = "Pediatric Image";
+            doctorImageDiv.appendChild(pediDoctorImg);
             break;
+
           case "Infectious":
-            text = "Infectious Ward: Isolation for contagious diseases.";
-            imageUrls = ["https://via.placeholder.com/300x200.png?text=Infectious"];
+            content.innerText = `Expert containment and compassionate care—our infectious disease team is trained to handle outbreaks with precision and safety. Your health and community protection are our top priorities.`;
+            extraTextDiv.innerText = `Advanced isolation protocols and cutting-edge treatment—we provide secure, specialized care for infectious conditions. Trust in our sterile environment and dedicated medical team for your recovery.`;
+            // Infectious images (inf1.jpg and inf2.jpg)
+            const infHospitalImg = document.createElement("img");
+            infHospitalImg.src = "inf1.jpg"; // Ensure you have inf1.jpg image
+            infHospitalImg.alt = "Infectious Disease Image";
+            hospitalImageDiv.appendChild(infHospitalImg);
+
+            const infDoctorImg = document.createElement("img");
+            infDoctorImg.src = "inf2.jpg"; // Ensure you have inf2.jpg image
+            infDoctorImg.alt = "Infectious Disease Image";
+            doctorImageDiv.appendChild(infDoctorImg);
             break;
+
           case "Private":
-            text = "Private Ward: Comfortable private rooms.";
-            imageUrls = ["https://via.placeholder.com/300x200.png?text=Private"];
+            content.innerText = `Experience premium healthcare in our private wards—personalized attention, luxury amenities, and exclusive care tailored to your comfort and recovery.`;
+            extraTextDiv.innerText = `Your health deserves the finest—our private wards offer VIP treatment with dedicated staff, advanced facilities, and a serene healing environment.`;
+            // Private images (ward1.jpg and ward2.jpg)
+            const privHospitalImg = document.createElement("img");
+            privHospitalImg.src = "ward1.jpg"; // Ensure you have ward1.jpg image
+            privHospitalImg.alt = "Private Ward Image";
+            hospitalImageDiv.appendChild(privHospitalImg);
+
+            const privDoctorImg = document.createElement("img");
+            privDoctorImg.src = "ward2.jpg"; // Ensure you have ward2.jpg image
+            privDoctorImg.alt = "Private Ward Image";
+            doctorImageDiv.appendChild(privDoctorImg);
             break;
         }
 
-        content.innerText = text;
-
-        // Clear old images
-        categoryImages.innerHTML = "";
-
-        // Show fallback container for category images
-        imageContainer.style.display = "block";
-
-        // Add new images
-        imageUrls.forEach(url => {
-          const img = document.createElement("img");
-          img.src = url;
-          img.alt = "Category Image";
-          categoryImages.appendChild(img);
-        });
-
-      } else {
-        menuContainer.classList.remove("top-layout");
-        contentContainer.style.display = "none";
+        // Add other categories as necessary
       }
     }
 
     window.onload = () => {
       const select = document.getElementById("mySelect");
       select.value = "placeholder"; // set to placeholder on load
-      
+
       document.getElementById("content").innerText = "Choose a category to view";
       document.getElementById("categoryImages").innerHTML = "";
       document.getElementById("content-container").style.display = "none";
