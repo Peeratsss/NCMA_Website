@@ -277,9 +277,17 @@ Thank you for trusting us with your care.`;
     }
 
     window.onload = () => {
-      document.getElementById("categoryImages").innerHTML = "";
-      document.getElementById("content-container").style.display = "none";
-    };
+  const select = document.getElementById("mySelect");
+  select.value = ""; // force the dropdown to show the placeholder "Categories"
+  
+  document.getElementById("content").innerText = "Choose a category to view";
+  document.getElementById("categoryImages").innerHTML = "";
+  document.getElementById("content-container").style.display = "none";
+
+  // Also, remove the top-layout class on load to reset layout
+  document.getElementById("menuContainer").classList.remove("top-layout");
+};
+
   </script>
 </body>
 </html>
