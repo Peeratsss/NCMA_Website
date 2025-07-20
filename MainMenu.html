@@ -33,6 +33,13 @@
       transform: translate(-50%, -50%);
     }
 
+    /* Class to move menu to top-left */
+    .menu-container-moved {
+      top: 10px;
+      left: 10px;
+      transform: translate(0, 0);
+    }
+
     .top-controls {
       display: flex;
       justify-content: center;
@@ -214,18 +221,12 @@
 
       if (selection === "placeholder") {
         // No selection, reset layout and keep menu in the center
-        menuContainer.style.position = "absolute";
-        menuContainer.style.top = "50%";
-        menuContainer.style.left = "50%";
-        menuContainer.style.transform = "translate(-50%, -50%)";
+        menuContainer.classList.remove("menu-container-moved");
         contentContainer.style.display = "none";
         content.innerText = "Choose a category to view";
       } else {
         // Move the menu to top-left when a category is selected
-        menuContainer.style.position = "absolute";
-        menuContainer.style.top = "10px";
-        menuContainer.style.left = "10px";
-        menuContainer.style.transform = "translate(0, 0)";
+        menuContainer.classList.add("menu-container-moved");
         contentContainer.style.display = "grid";
 
         // Adjust the content container to the right and enlarge
