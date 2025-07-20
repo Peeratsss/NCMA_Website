@@ -250,6 +250,25 @@ Whether you're recovering from illness, surgery, or need monitored care, our com
         doctorImg.alt = "ICU Image";
         doctorImageDiv.appendChild(doctorImg);
 
+      } else if (selection === "Pediatric") {
+        menuContainer.classList.add("top-layout");
+        contentContainer.style.display = "grid";
+
+        content.innerText = `Expert care, compassionate healing—our medical team is dedicated to your health around the clock. Trust skilled professionals who put your well-being first.`;
+
+        extraTextDiv.innerText = `A healing environment designed just for kids—where advanced medicine meets warmth and compassion. Because every child deserves the best care possible.`;
+
+        // Pediatric images (ped1.jpg and ped2.jpg)
+        const hospitalImg = document.createElement("img");
+        hospitalImg.src = "ped1.jpg"; // Ensure you have ped1.jpg image
+        hospitalImg.alt = "Pediatric Image";
+        hospitalImageDiv.appendChild(hospitalImg);
+
+        const doctorImg = document.createElement("img");
+        doctorImg.src = "ped2.jpg"; // Ensure you have ped2.jpg image
+        doctorImg.alt = "Pediatric Image";
+        doctorImageDiv.appendChild(doctorImg);
+
       } else if (selection === "Home") {
         // For home category, reset to original content
         menuContainer.classList.add("top-layout");
