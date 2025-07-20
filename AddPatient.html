@@ -149,6 +149,40 @@
         alert('Error submitting data.');
       });
     });
+	
+	const SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_DEPLOYED_URL_HERE/exec';
+
+document.getElementById('form').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const formData = new FormData(this);
+  const dataObj = {};
+
+  formData.forEach((value, key) => {
+    dataObj[key] = value;
+  });
+
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(dataObj)
+  })
+  .then(response => response.json())
+  .then(result => {
+    alert(result.message);
+    if (result.status === 'success') {
+      this.reset();
+    }
+  })
+  .catch(error => {
+    console.error('Error!', error.message);
+    alert('Failed to submit. Please try again.');
+  });
+});
+
   </script>
 </body>
 </html>
