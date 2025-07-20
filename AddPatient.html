@@ -116,41 +116,8 @@
   </form>
 
   <script>
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzm5wkKmNs48SXObqjWQvk5NhUO5SIo5w1g68tumgo/dev';
-
-    document.getElementById('form').addEventListener('submit', function(event) {
-      event.preventDefault(); // Prevent default form submit
-
-      // Collect form data
-      const formData = new FormData(this);
-      let dataObj = {};
-      formData.forEach((value, key) => {
-        dataObj[key] = value;
-      });
-
-      // POST JSON data to Google Apps Script
-      fetch(SCRIPT_URL, {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(dataObj)
-      })
-      .then(response => response.json())
-      .then(result => {
-        alert(result.message || 'Submission successful!');
-        if (result.status === 'success') {
-          document.getElementById('form').reset();
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        alert('Error submitting data.');
-      });
-    });
-	
-	const SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_DEPLOYED_URL_HERE/exec';
+ 
+ const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzm5wkKmNs48SXObqjWQvk5NhUO5SIo5w1g68tumgo/dev';
 
 document.getElementById('form').addEventListener('submit', function(event) {
   event.preventDefault();
