@@ -111,14 +111,15 @@
       <button><a href="Patients.html">Patients</a></button>
 
       <select id="mySelect" onchange="updateContent()">
-        <option value="" disabled selected>Categories</option>
-        <option value="Home">Home</option>
-        <option value="General">General</option>
-        <option value="ICU">ICU</option>
-        <option value="Pediatric">Pediatric</option>
-        <option value="Infectious">Infectious</option>
-        <option value="Private">Private</option>
-      </select>
+  <option value="" disabled selected hidden>Categories</option>
+  <option value="Home">Home</option>
+  <option value="General">General</option>
+  <option value="ICU">ICU</option>
+  <option value="Pediatric">Pediatric</option>
+  <option value="Infectious">Infectious</option>
+  <option value="Private">Private</option>
+</select>
+
 
       <button><a href="Login.html">Logout</a></button>
     </div>
@@ -155,8 +156,8 @@ Thank you for trusting us with your care.`;
           imageUrl = "Hospital1.jpg";
           break;
         case "General":
-          text = "General Ward: Stable patients and routine care.";
-          imageUrl = "https://via.placeholder.com/300x200.png?text=General+Ward";
+          text = "General Ward: Our Doctors and Nurses will bring great care.";
+          imageUrl = "";
           break;
         case "ICU":
           text = "ICU: Critical care and constant monitoring.";
