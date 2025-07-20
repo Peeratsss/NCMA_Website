@@ -93,43 +93,41 @@
   </form>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const scriptUrl = 'https://script.google.com/macros/s/AKfycbwmnr4i5PCJob0x_eI1ruBllhorQ7UAEbpQu9j67wDYxXln2cf_GiLZmI9ZEVQ5dVT1/exec';
+    const scriptUrl = 'https://script.google.com/macros/s/AKfycbzm5wkKmNs48SXObqjWQvk5NhUO5SIo5w1g68tumgo/dev'; // Replace with your web app URL
 
-      const form = document.getElementById('patientForm');
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
+    document.getElementById('patientForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
 
-        const formData = new FormData(form);
+      const form = e.target;
+      const formData = new FormData(form);
 
-        // Convert form data to JSON object
-        const data = {};
-        formData.forEach((value, key) => {
-          data[key] = value;
+      // Convert form data to JSON object
+      const data = {};
+      formData.forEach((value, key) => {
+        data[key] = value;
+      });
+
+      try {
+        const response = await fetch(scriptUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
         });
 
-        try {
-          const response = await fetch(scriptUrl, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-          });
+        const result = await response.json();
 
-          const result = await response.json();
-
-          if (result.status === 'success') {
-            alert(result.message);
-            form.reset();
-          } else {
-            alert('Error: ' + result.message);
-          }
-        } catch (error) {
-          alert('Failed to submit. Please try again.');
-          console.error('Submission error:', error);
+        if (result.status === 'success') {
+          alert(result.message);
+          form.reset();
+        } else {
+          alert('Error: ' + result.message);
         }
-      });
+      } catch (error) {
+        alert('Failed to submit. Please try again.');
+        console.error('Submission error:', error);
+      }
     });
   </script>
 </body>
