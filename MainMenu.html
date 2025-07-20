@@ -3,76 +3,73 @@
 <head>
   <meta charset="UTF-8">
   <title>Welcome!</title>
-  <style>
-    body {
-      background-color: rgba(128, 0, 128, 0.3);
-      font-family: Arial, sans-serif;
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
+  body {
+  background-color: rgba(128, 0, 128, 0.3);
+  font-family: Arial, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    .menu-container {
-      width: 100%;
-      max-width: 350px;
-      padding: 30px 20px;
-      background-color: rgba(0, 0, 0, 0.1);
-      border: 1px solid black;
-      border-radius: 10px;
-      text-align: center;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
+.menu-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 25px 20px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid black;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
-    button, select {
-      margin: 10px 5px;
-      padding: 10px 15px;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 5px;
-      border: 1px solid #333;
-      background-color: #f0f0f0;
-    }
+.top-controls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
 
-    button a {
-      text-decoration: none;
-      color: black;
-    }
+button, select {
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid #333;
+  background-color: #f0f0f0;
+}
 
-    #content {
-      margin-top: 20px;
-      font-size: 18px;
-      color: #000;
-      text-align: center;
-    }
+button a {
+  text-decoration: none;
+  color: black;
+}
 
-    .footer-note {
-      margin-top: 15px;
-      font-size: 14px;
-      color: green;
-      text-align: center;
-    }
+#content {
+  font-size: 18px;
+  color: #000;
+  margin-top: 10px;
+}
 
-    #image-container {
-      margin-top: 15px;
-    }
+#image-container {
+  margin-top: 15px;
+}
 
-    #image-container img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-      display: none; /* Hidden by default */
-    }
-  </style>
+#image-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  display: none;
+}
+
 </head>
 <body>
-  <div class="main-wrapper">
+  <div class="menu-container">
 
-    <!-- Top Menu Bar -->
-    <div class="menu-bar">
+    <!-- Top Buttons and Dropdown -->
+    <div class="top-controls">
       <button><a href="Patients.html">Patients</a></button>
 
       <select id="mySelect" onchange="updateContent()">
@@ -87,12 +84,12 @@
       <button><a href="Login.html">Logout</a></button>
     </div>
 
-    <!-- Content Container -->
-    <div class="content-container">
-      <div id="content">Initial content</div>
-      <div id="image-container">
-        <img id="categoryImage" src="" alt="Category Image">
-      </div>
+    <!-- Description -->
+    <div id="content">Initial content</div>
+
+    <!-- Image Section -->
+    <div id="image-container">
+      <img id="categoryImage" src="" alt="Category Image">
     </div>
 
   </div>
@@ -150,5 +147,6 @@
     window.onload = updateContent;
   </script>
 </body>
+
 
 </html>
