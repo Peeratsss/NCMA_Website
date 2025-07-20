@@ -16,7 +16,6 @@
       transition: all 0.5s ease;
     }
 
-    /* Initial position for menu container in center */
     .menu-container {
       width: 100%;
       max-width: 400px;
@@ -43,7 +42,7 @@
 
     button, select {
       padding: 10px 15px;
-      font-size: 18px;
+      font-size: 16px;
       cursor: pointer;
       border-radius: 5px;
       border: 1px solid #333;
@@ -63,70 +62,68 @@
       transform: translate(-50%, -50%);
       max-width: 1100px; /* Enlarged width */
       width: 90%;
-      height: 85%; /* Adjusted height */
+      height: 80%; /* Adjusted height */
       background: rgba(255, 255, 255, 0.85);
       border-radius: 10px;
       box-shadow: 0 0 15px rgba(0,0,0,0.3);
-      padding: 30px;
+      padding: 20px;
       display: none;
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: auto auto;
-      gap: 30px; /* Increased gap for spacing */
+      gap: 20px;
       color: #000;
-      font-size: 20px; /* Increased font size */
+      font-size: 18px;
       text-align: left;
-      transition: transform 0.5s ease;
+      transition: transform 0.5s ease; /* Adding sliding animation */
     }
 
+    /* Top text on left */
     #content {
       grid-column: 1 / 2;
       grid-row: 1 / 2;
       white-space: pre-line;
       align-self: center;
-      font-size: 24px; /* Increased font size for the main content */
     }
 
+    /* Hospital image top right */
     #hospital-image {
       grid-column: 2 / 3;
       grid-row: 1 / 2;
       justify-self: center;
     }
-
     #hospital-image img {
-      max-width: 350px; /* Increased image size */
-      max-height: 300px; /* Set max height for image */
+      max-width: 300px;
       border-radius: 10px;
       box-shadow: 0 0 8px rgba(0,0,0,0.2);
     }
 
+    /* Bottom left for additional text */
     #extra-text {
       grid-column: 1 / 2;
       grid-row: 2 / 3;
       white-space: pre-line;
       align-self: center;
       justify-self: center;
-      font-size: 20px;
     }
 
+    /* Doctor image bottom right */
     #doctor-image {
       grid-column: 2 / 3;
       grid-row: 2 / 3;
       justify-self: center;
       align-self: center;
     }
-
     #doctor-image img {
-      max-width: 350px; /* Increased image size */
-      max-height: 300px; /* Set max height for image */
+      max-width: 300px;
       border-radius: 10px;
       box-shadow: 0 0 8px rgba(0,0,0,0.2);
     }
 
+    /* For other categories fallback */
     #image-container {
-      max-width: 350px; /* Increased width for image fallback */
+      max-width: 300px;
     }
-
     #categoryImages img {
       max-width: 100%;
       height: auto;
@@ -230,8 +227,9 @@
         menuContainer.style.transform = "translate(0, 0)";
         contentContainer.style.display = "grid";
 
-        // Your content loading logic for different categories goes here (example shown for Private)
-        // (Insert logic for different categories here, same as your previous code)
+        // Adjust the content container to the right and enlarge
+        contentContainer.style.left = "15%";  // Move content box right
+        contentContainer.style.width = "75%";  // Make it larger
 
         // Example for "Private"
         if (selection === "Private") {
