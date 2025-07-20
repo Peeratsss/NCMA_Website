@@ -105,23 +105,21 @@
       box-shadow: 0 0 8px rgba(0,0,0,0.2);
     }
 
-  /* Bottom left for additional text */
-#extra-text {
-  grid-column: 2 / 3;
-  grid-row: 2 / 3;
-  white-space: pre-line;
-  align-self: center;
-  justify-self: center;
-}
+    /* Bottom left for additional text */
+    #extra-text {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
+      white-space: pre-line;
+      align-self: center;
+      justify-self: center;
+    }
 
-/* Doctor image bottom right */
-#doctor-image {
-  grid-column: 1 / 2;
-  grid-row: 2 / 3;
-  justify-self: center;
-  align-self: center;
-}
-
+    /* Doctor image bottom right */
+    #doctor-image {
+      grid-column: 1 / 2;
+      grid-row: 2 / 3;
+      justify-self: center;
+      align-self: center;
     }
     #doctor-image img {
       max-width: 300px;
@@ -149,7 +147,7 @@
       <button><a href="Patients.html">Patients</a></button>
 
       <select id="mySelect" onchange="updateContent()">
-        <option value="" disabled selected>Categories</option>
+        <option value="placeholder" disabled selected>Categories</option>
         <option value="Home">Home</option>
         <option value="General">General</option>
         <option value="ICU">ICU</option>
@@ -200,7 +198,12 @@
       categoryImages.innerHTML = "";
       imageContainer.style.display = "none";
 
-      if (selection === "Home") {
+      if (selection === "placeholder") {
+        // No selection, hide content and reset layout
+        menuContainer.classList.remove("top-layout");
+        contentContainer.style.display = "none";
+        content.innerText = "Choose a category to view";
+      } else if (selection === "Home") {
         menuContainer.classList.add("top-layout");
         contentContainer.style.display = "grid";
 
@@ -264,6 +267,9 @@ Thank you for trusting us with your care.`;
         // Clear old images
         categoryImages.innerHTML = "";
 
+        // Show fallback container for category images
+        imageContainer.style.display = "block";
+
         // Add new images
         imageUrls.forEach(url => {
           const img = document.createElement("img");
@@ -279,17 +285,15 @@ Thank you for trusting us with your care.`;
     }
 
     window.onload = () => {
-  const select = document.getElementById("mySelect");
-  select.value = ""; // force the dropdown to show the placeholder "Categories"
-  
-  document.getElementById("content").innerText = "Choose a category to view";
-  document.getElementById("categoryImages").innerHTML = "";
-  document.getElementById("content-container").style.display = "none";
+      const select = document.getElementById("mySelect");
+      select.value = "placeholder"; // set to placeholder on load
+      
+      document.getElementById("content").innerText = "Choose a category to view";
+      document.getElementById("categoryImages").innerHTML = "";
+      document.getElementById("content-container").style.display = "none";
 
-  // Also, remove the top-layout class on load to reset layout
-  document.getElementById("menuContainer").classList.remove("top-layout");
-};
-
+      document.getElementById("menuContainer").classList.remove("top-layout");
+    };
   </script>
 </body>
 </html>
