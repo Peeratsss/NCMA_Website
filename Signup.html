@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Signup</title>
+  <style>
+    body {
+      background-color: rgba(128, 0, 128, 0.3);
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      width: 220px;
+      border: 1px solid black;
+      padding: 20px 15px;
+      margin: 50px auto;
+      background-color: rgba(0, 0, 0, 0.1);
+      text-align: left;
+      font-size: 16px;
+      box-sizing: border-box;
+      /* height removed so container grows */
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-top: 12px;
+      margin-bottom: 4px;
+    }
+    input {
+      width: 100%;
+      padding: 6px 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    .buttons {
+      margin-top: 20px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+    }
+    button, .buttons a {
+      font-size: 16px;
+      padding: 8px 16px;
+      cursor: pointer;
+      text-decoration: none;
+      color: black;
+      background-color: #ddd;
+      border: 1px solid #aaa;
+      border-radius: 4px;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1.4;
+      height: 36px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    button:hover, .buttons a:hover {
+      background-color: #bbb;
+    }
+  </style>
+</head>
+<body>
+
+  <form class="container">
+    <label for="fullname">Full Name:</label>
+    <input id="fullname" name="fullname" type="text" />
+
+    <label for="age">Contact  no.:</label>
+    <input id="age" name="age" type="number" />
+
+    <label for="username">New Username:</label>
+    <input id="username" name="username" type="text" />
+
+    <label for="password">New Password:</label>
+    <input id="password" name="password" type="password" />
+
+    <div class="buttons">
+      <button type="button" onclick="history.back()">Go Back</button>
+      <a href="MainMenu.HTML">Sign In</a>
+    </div>
+  </form>
+
+</body>
+</html>

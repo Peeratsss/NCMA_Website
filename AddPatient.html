@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      background-color: rgba(128, 0, 128, 0.3);
+    }
+    .container {
+      width: 300px;
+      height: auto;
+      border: 1px solid black;
+      padding: 10px;
+      margin: 20px auto;
+      background-color: rgba(0, 0, 0, 0.1);
+      text-align: center;
+      font-weight: bold;
+      font-family: Arial, sans-serif;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    select {
+      width: 90%;
+      padding: 6px;
+      margin-top: 4px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .radio {
+      margin: 0 10px;
+      font-weight: normal;
+    }
+    button {
+      margin: 8px 5px 0 5px;
+      padding: 8px 15px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .button-primary {
+      background-color: #6200ea;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    .button-danger {
+      background-color: #d32f2f;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    a {
+      text-decoration: none;
+      color: black;
+    }
+  </style>
+</head>
+
+<body>
+  <br><br><br><br>
+  <form id="form" class="container">
+    <label for="lastName">Last Name</label>
+    <input id="lastName" class="input" type="text" placeholder="Your Last Name" name="Last Name" required />
+
+    <label for="firstName">First Name</label>
+    <input id="firstName" class="input" type="text" placeholder="Your First Name" name="First Name" required />
+
+    <label for="middleInitial">Middle Initial</label>
+    <input id="middleInitial" class="input" type="text" placeholder="Your Middle Initial" name="Middle Initial" maxlength="1" />
+
+    <label for="age">Age</label>
+    <input id="age" class="input" type="number" placeholder="Your Age" name="Age" min="0" required />
+
+    <label for="address">Address</label>
+    <input id="address" class="input" type="text" placeholder="ex. Quezon City" name="Address" />
+
+    <label>Gender</label>
+    <label class="radio">
+      <input type="radio" name="Gender" value="male" required /> Male
+    </label>
+    <label class="radio">
+      <input type="radio" name="Gender" value="female" /> Female
+    </label>
+
+    <label for="dob">Date of Birth</label>
+    <input id="dob" class="input" type="date" placeholder="Your Date of Birth" name="DOB" />
+
+    <label for="ward">Ward</label>
+    <select id="ward" name="Ward">
+      <option>General</option>
+      <option>ICU</option>
+      <option>Pediatric</option>
+      <option>Infectious</option>
+    </select>
+
+    <div style="margin-top: 15px;">
+      <button class="button-primary" type="submit" id="submit-button">Add</button>
+      <button
+        class="button-danger"
+        type="button"
+        onclick="document.getElementById('form').reset();"
+      >
+        Cancel
+      </button>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <button type="button"><a href="javascript:history.back()">Go Back</a></button>
+      <button type="button"><a href="Login.HTML">Home</a></button>
+    </div>
+  </form>
+
+  <script>
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzm5wkKmNs48SXObqjWQvk5NhUO5SIo5w1g68tumgo/dev';
+
+    document.getElementById('form').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent default form submit
+
+      // Collect form data
+      const formData = new FormData(this);
+      let dataObj = {};
+      formData.forEach((value, key) => {
+        dataObj[key] = value;
+      });
+
+      // POST JSON data to Google Apps Script
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dataObj)
+      })
+      .then(response => response.json())
+      .then(result => {
+        alert(result.message || 'Submission successful!');
+        if (result.status === 'success') {
+          document.getElementById('form').reset();
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Error submitting data.');
+      });
+    });
+  </script>
+</body>
+</html>
