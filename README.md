@@ -1,6 +1,6 @@
 readme
- sir medyo mabagal yung ibang page so if possible po wait ka onti L :)
+ sir medyo mabagal yung ibang page so if possible po wait ka onti  :)
 
- <a href="Login.HTML"> <Font size=5> CLICK HERE </Font> </a>
+ <a href="Login.html"> <Font size=5> CLICK HERE </Font> </a>
 
 
