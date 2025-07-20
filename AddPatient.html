@@ -151,6 +151,20 @@
         console.error('Error!', error.message);
         alert('Failed to submit. Please try again.');
       });
+
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbwmnr4i5PCJob0x_eI1ruBllhorQ7UAEbpQu9j67wDYxXln2cf_GiLZmI9ZEVQ5dVT1/exec'
+
+const form = document.forms['contact-form']
+
+form.addEventListener('submit', e => {
+  
+  e.preventDefault()
+  
+  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+  .then(response => alert("Thank you! Form is submitted" ))
+  .then(() => { window.location.reload(); })
+  .catch(error => console.error('Error!', error.message))
+})
     });
   </script>
 </body>
