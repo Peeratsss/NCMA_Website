@@ -17,7 +17,6 @@
       text-align: left;
       font-size: 16px;
       box-sizing: border-box;
-      /* height removed so container grows */
     }
     label {
       display: block;
@@ -63,20 +62,20 @@
 
   <form class="container">
     <label for="fullname">Full Name:</label>
-    <input id="fullname" name="fullname" type="text" />
+    <input id="fullname" name="fullname" type="text" placeholder="Enter Full Name" required />
 
-    <label for="age">Contact  no.:</label>
-    <input id="age" name="age" type="number" />
+    <label for="age">Contact no.:</label>
+    <input id="age" name="age" type="number" placeholder="Enter Contact Number" required />
 
     <label for="username">New Username:</label>
-    <input id="username" name="username" type="text" />
+    <input id="username" name="username" type="text" placeholder="Enter New Username" required />
 
     <label for="password">New Password:</label>
-    <input id="password" name="password" type="password" />
+    <input id="password" name="password" type="password" placeholder="Enter New Password" required />
 
     <div class="buttons">
       <button type="button" onclick="history.back()">Go Back</button>
-      <a href="MainMenu.html">Sign In</a>
+      <a href="MainMenu.html"><button type="button">Sign Up</button></a>
     </div>
   </form>
 
