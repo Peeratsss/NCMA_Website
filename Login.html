@@ -1,53 +1,66 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Welcome!</title>
-    <style>
-        body {
-            background-color: rgba(128, 0, 128, 0.3);
-            font-family: Arial, sans-serif;
-        }
-
-        .container {
-            text-align: center;
-            margin-top: 100px;
-        }
-
-        .login-signup {
-            width: 200px;
-            height: auto;
-            border: 1px solid black;
-            padding: 20px;
-            margin: 20px auto;
-            background-color: rgba(0, 0, 0, 0.1);
-        }
-
-        .login-signup button {
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            margin-bottom: 10px;
-            cursor: pointer;
-        }
-
-        .back-btn {
-            margin-top: 20px;
-            padding: 10px;
-            font-size: 16px;
-        }
-
-    </style>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <style>
+    body {
+      background-color: rgba(128, 0, 128, 0.3);
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      width: 220px;
+      height: 150px;
+      border: 1px solid black;
+      padding: 20px;
+      margin: 50px auto;
+      background-color: rgba(0, 0, 0, 0.1);
+      text-align: center;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    input {
+      width: 90%;
+      padding: 6px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    button {
+      width: 90%;
+      padding: 8px;
+      font-size: 16px;
+      margin-top: 15px;
+      cursor: pointer;
+      background-color: #6200ea;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    button:hover {
+      background-color: #3700b3;
+    }
+    a {
+      text-decoration: none;
+      color: black;
+    }
+  </style>
 </head>
-
 <body>
-    <div class="container">
-        <h1>LOGIN MENU</h1>
 
-        <div class="login-signup">
-            <button><a href="Login2.html" style="text-decoration: none; color: black;">Login</a></button>
-            <button><a href="Signup.html" style="text-decoration: none; color: black;">Sign up</a></button>
-        </div>
+  <div class="container">
+    <h4>Login</h4>
 
-        <button class="back-btn"><a href="javascript:history.back()" style="text-decoration: none; color: black;">Go Back</a></button>
-    </div>
+    <label for="username">Username:</label>
+    <input id="username" type="text" name="username" placeholder="Enter Username" required>
+
+    <label for="password">Password:</label>
+    <input id="password" type="password" name="password" placeholder="Enter Password" required>
+
+    <button type="button" onclick="history.back()">Go Back</button>
+    <a href="MainMenu.html"><button type="button">Login</button></a>
+  </div>
+
 </body>
 </html>
