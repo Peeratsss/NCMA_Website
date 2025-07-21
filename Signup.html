@@ -7,60 +7,78 @@
     body {
       background-color: rgba(128, 0, 128, 0.3);
       font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
     .container {
-      width: 220px;
-      border: 1px solid black;
-      padding: 20px 15px;
-      margin: 50px auto;
+      width: 350px;
+      padding: 30px;
       background-color: rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      border: 1px solid #ccc;
       text-align: left;
       font-size: 16px;
       box-sizing: border-box;
+    }
+    h4 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #6200ea;
     }
     label {
       display: block;
       font-weight: bold;
       margin-top: 12px;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
     input {
       width: 100%;
-      padding: 6px 8px;
+      padding: 12px;
       font-size: 14px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
       box-sizing: border-box;
     }
     .buttons {
       margin-top: 20px;
-      text-align: center;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       gap: 8px;
     }
     button, .buttons a {
       font-size: 16px;
-      padding: 8px 16px;
+      padding: 12px 16px;
       cursor: pointer;
       text-decoration: none;
-      color: black;
-      background-color: #ddd;
-      border: 1px solid #aaa;
+      color: white;
+      background-color: #6200ea;
+      border: none;
       border-radius: 4px;
       display: inline-block;
       vertical-align: middle;
-      line-height: 1.4;
-      height: 36px;
-      box-sizing: border-box;
       text-align: center;
     }
-    button:hover, .buttons a:hover {
-      background-color: #bbb;
+    button:hover {
+      background-color: #3700b3;
+    }
+    .go-back-btn {
+      background-color: #d32f2f;
+    }
+    .go-back-btn:hover {
+      background-color: #c2185b;
     }
   </style>
 </head>
 <body>
 
   <form class="container">
+    <h4>Sign Up</h4>
+
     <label for="fullname">Full Name:</label>
     <input id="fullname" name="fullname" type="text" placeholder="Enter Full Name" required />
 
@@ -74,7 +92,7 @@
     <input id="password" name="password" type="password" placeholder="Enter New Password" required />
 
     <div class="buttons">
-      <button type="button" onclick="history.back()">Go Back</button>
+      <button type="button" class="go-back-btn" onclick="history.back()">Go Back</button>
       <a href="MainMenu.html"><button type="button">Sign Up</button></a>
     </div>
   </form>
