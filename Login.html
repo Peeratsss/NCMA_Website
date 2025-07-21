@@ -1,31 +1,53 @@
 <html>
-<HEAD>  <TITLE>Welcome!</TITLE>
-<style>
+<head>
+    <title>Welcome!</title>
+    <style>
+        body {
+            background-color: rgba(128, 0, 128, 0.3);
+            font-family: Arial, sans-serif;
+        }
 
-body {background-color:  rgba(128, 0, 128, 0.3); }
+        .container {
+            text-align: center;
+            margin-top: 100px;
+        }
 
+        .login-signup {
+            width: 200px;
+            height: auto;
+            border: 1px solid black;
+            padding: 20px;
+            margin: 20px auto;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
 
-<br><br><br><br><br>
-</style></HEAD>
+        .login-signup button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
 
+        .back-btn {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+        }
 
-<BODY>
-	<center><h1> <center>LOGIN MENU <h2>
+    </style>
+</head>
 
-<div style="width: 200px; height: 35px; border: 1px solid black; padding: 10px; margin: 20px; background-color: rgba(0,0,0,0.1);">
+<body>
+    <div class="container">
+        <h1>LOGIN MENU</h1>
 
-		<Font size=5><a href="Login2.html"> <button>Login</a> <br>	</Font>	
-		<Font size=5><a href="Signup.html"> <button> Sign up</a>	</Font>
-</div>
+        <div class="login-signup">
+            <button><a href="Login2.html" style="text-decoration: none; color: black;">Login</a></button>
+            <button><a href="Signup.html" style="text-decoration: none; color: black;">Sign up</a></button>
+        </div>
 
-		</center>
-<button><a href="javascript:history.back()"><font size=5 color="black">Go Back</Font></a>
-
-	
-
-
-
-
-</BODY>
-
+        <button class="back-btn"><a href="javascript:history.back()" style="text-decoration: none; color: black;">Go Back</a></button>
+    </div>
+</body>
 </html>
