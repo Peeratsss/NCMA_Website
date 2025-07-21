@@ -7,43 +7,67 @@
     body {
       background-color: rgba(128, 0, 128, 0.3);
       font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
     .container {
-      width: 220px;
-      height: 150px;
-      border: 1px solid black;
-      padding: 20px;
-      margin: 50px auto;
+      width: 300px;
+      padding: 30px;
       background-color: rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      border: 1px solid #ccc;
       text-align: center;
       font-size: 16px;
       box-sizing: border-box;
     }
+    h4 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #6200ea;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      text-align: left;
+    }
     input {
-      width: 90%;
-      padding: 6px;
-      margin-top: 5px;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
       border: 1px solid #ccc;
       border-radius: 4px;
       box-sizing: border-box;
+      font-size: 14px;
     }
     button {
-      width: 90%;
-      padding: 8px;
+      width: 100%;
+      padding: 10px;
       font-size: 16px;
-      margin-top: 15px;
       cursor: pointer;
       background-color: #6200ea;
       color: white;
       border: none;
       border-radius: 4px;
+      margin-top: 10px;
     }
     button:hover {
       background-color: #3700b3;
     }
     a {
       text-decoration: none;
-      color: black;
+      color: white;
+    }
+    .go-back-btn {
+      background-color: #d32f2f;
+      margin-top: 10px;
+    }
+    .go-back-btn:hover {
+      background-color: #c2185b;
     }
   </style>
 </head>
@@ -58,7 +82,7 @@
     <label for="password">Password:</label>
     <input id="password" type="password" name="password" placeholder="Enter Password" required>
 
-    <button type="button" onclick="history.back()">Go Back</button>
+    <button type="button" class="go-back-btn" onclick="history.back()">Go Back</button>
     <a href="MainMenu.html"><button type="button">Login</button></a>
   </div>
 
