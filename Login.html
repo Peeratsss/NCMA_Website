@@ -5,28 +5,20 @@
         body {
             background-color: rgba(128, 0, 128, 0.3);
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
         }
 
         .container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
+            text-align: center;
+            margin-top: 100px;
         }
 
         .login-signup {
-            width: 250px;
+            width: 200px;
             height: auto;
             border: 1px solid black;
             padding: 20px;
             margin: 20px auto;
             background-color: rgba(0, 0, 0, 0.1);
-            box-sizing: border-box;
-            text-align: center;
         }
 
         .login-signup button {
@@ -35,46 +27,12 @@
             font-size: 16px;
             margin-bottom: 10px;
             cursor: pointer;
-            border: none;
-            background-color: #4CAF50;
-            color: white;
-            transition: background-color 0.3s;
-        }
-
-        .login-signup button:hover {
-            background-color: #45a049;
         }
 
         .back-btn {
+            margin-top: 20px;
             padding: 10px;
             font-size: 16px;
-            background-color: #f44336;
-            color: white;
-            border: none;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: background-color 0.3s;
-        }
-
-        .back-btn:hover {
-            background-color: #e53935;
-        }
-
-        /* Make the page responsive */
-        @media screen and (max-width: 600px) {
-            .login-signup {
-                width: 90%;
-            }
-
-            .login-signup button {
-                font-size: 14px;
-                padding: 12px;
-            }
-
-            .back-btn {
-                font-size: 14px;
-                padding: 12px;
-            }
         }
 
     </style>
@@ -85,11 +43,11 @@
         <h1>LOGIN MENU</h1>
 
         <div class="login-signup">
-            <button><a href="Login2.html" style="text-decoration: none; color: white;">Login</a></button>
-            <button><a href="Signup.html" style="text-decoration: none; color: white;">Sign up</a></button>
+            <button><a href="Login2.html" style="text-decoration: none; color: black;">Login</a></button>
+            <button><a href="Signup.html" style="text-decoration: none; color: black;">Sign up</a></button>
         </div>
 
-        <button class="back-btn"><a href="javascript:history.back()" style="text-decoration: none; color: white;">Go Back</a></button>
+        <button class="back-btn"><a href="javascript:history.back()" style="text-decoration: none; color: black;">Go Back</a></button>
     </div>
 </body>
 </html>
