@@ -64,6 +64,12 @@
       color: black;
     }
 
+    /* Add this CSS to make the Logout button red */
+    .logout-btn {
+      background-color: red;
+      color: white;
+    }
+
     /* Updated content container with sliding effect */
     #content-container {
       position: fixed;
@@ -168,9 +174,7 @@
   <div class="menu-container" id="menuContainer">
     <div class="top-controls">
       <button><a href="Patients.html">Patients</a></button>
-<button onclick="window.location.href='MedicineList.html'">Medicine Dictionary</button>
-
-
+      <button><a href="Medicine.html">Medicine List</a></button> <!-- Added Medicine List button -->
       <select id="mySelect" onchange="updateContent()">
         <option value="placeholder" disabled selected>Categories</option>
         <option value="Home">Home</option>
@@ -181,7 +185,7 @@
         <option value="Private">Private</option>
       </select>
 
-      <button><a href="Login.html">Logout</a></button>
+      <button class="logout-btn"><a href="Login.html">Logout</a></button> <!-- Changed Logout button color to red -->
     </div>
   </div>
 
