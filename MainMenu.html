@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Welcome!</title>
+  <style>
+    body {
+      background-color: rgba(128, 0, 128, 0.3);
+      font-family: Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      transition: all 0.5s ease; /* Add smooth transition */
+    }
+
+    .menu-container {
+      width: 100%;
+      max-width: 400px;
+      padding: 25px 20px;
+      background-color: rgba(0, 0, 0, 0.1);
+      border: 1px solid black;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .top-layout {
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: auto;
+      max-width: 400px;
+      padding: 15px 20px;
+      background-color: rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+
+    .top-controls {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    button, select {
+      padding: 10px 15px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      border: 1px solid #333;
+      background-color: #f0f0f0;
+    }
+
+    button a {
+      text-decoration: none;
+      color: black;
+    }
+
+    /* Updated content container with sliding effect */
+    #content-container {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 900px;  /* Enlarged width */
+      width: 90%;
+      height: 80%;  /* Adjusted height */
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      padding: 20px;
+      display: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 20px;
+      color: #000;
+      font-size: 18px;
+      text-align: left;
+      transition: transform 0.5s ease; /* Adding sliding animation */
+    }
+
+    /* Top text on left */
+    #content {
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+      white-space: pre-line;
+      align-self: center;
+    }
+
+    /* Hospital image top right */
+    #hospital-image {
+      grid-column: 2 / 3;
+      grid-row: 1 / 2;
+      justify-self: center;
+    }
+    #hospital-image img {
+      max-width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    }
+
+    /* Bottom left for additional text */
+    #extra-text {
+      grid-column: 1 / 2;
+      grid-row: 2 / 3;
+      white-space: pre-line;
+      align-self: center;
+      justify-self: center;
+    }
+
+    /* Doctor image bottom right */
+    #doctor-image {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
+      justify-self: center;
+      align-self: center;
+    }
+    #doctor-image img {
+      max-width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
+    }
+
+    /* For other categories fallback */
+    #image-container {
+      max-width: 300px;
+    }
+    #categoryImages img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .text-left {
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+    }
+
+    .text-right {
+      grid-column: 2 / 3;
+      grid-row: 1 / 2;
+    }
+
+    .image-left {
+      grid-column: 1 / 2;
+      grid-row: 2 / 3;
+    }
+
+    .image-right {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
+    }
+  </style>
+</head>
+<body>
+  <div class="menu-container" id="menuContainer">
+    <div class="top-controls">
+      <button><a href="Patients.html">Patients</a></button>
+
+      <select id="mySelect" onchange="updateContent()">
+        <option value="placeholder" disabled selected>Categories</option>
+        <option value="Home">Home</option>
+        <option value="General">General</option>
+        <option value="ICU">ICU</option>
+        <option value="Pediatric">Pediatric</option>
+        <option value="Infectious">Infectious</option>
+        <option value="Private">Private</option>
+      </select>
+
+      <button><a href="Login.html">Logout</a></button>
+    </div>
+  </div>
+
+  <div id="content-container">
+    <!-- Main text top left -->
+    <div id="content">Choose a category to view</div>
+
+    <!-- Hospital image top right -->
+    <div id="hospital-image"></div>
+
+    <!-- Extra text bottom left -->
+    <div id="extra-text"></div>
+
+    <!-- Doctor image bottom right -->
+    <div id="doctor-image"></div>
+
+    <!-- fallback container for other categories images -->
+    <div id="image-container" style="grid-column: 1 / 3; display:none;">
+      <div id="categoryImages"></div>
+    </div>
+  </div>
+
+  <script>
+    function updateContent() {
+      const selection = document.getElementById("mySelect").value;
+      const content = document.getElementById("content");
+      const menuContainer = document.getElementById("menuContainer");
+      const contentContainer = document.getElementById("content-container");
+      const hospitalImageDiv = document.getElementById("hospital-image");
+      const doctorImageDiv = document.getElementById("doctor-image");
+      const extraTextDiv = document.getElementById("extra-text");
+      const imageContainer = document.getElementById("image-container");
+      const categoryImages = document.getElementById("categoryImages");
+
+      // Clear images and extra texts
+      hospitalImageDiv.innerHTML = "";
+      doctorImageDiv.innerHTML = "";
+      extraTextDiv.innerText = "";
+      categoryImages.innerHTML = "";
+      imageContainer.style.display = "none";
+
+      if (selection === "placeholder") {
+        // No selection, hide content and reset layout
+        menuContainer.classList.remove("top-layout");
+        contentContainer.style.display = "none";
+        content.innerText = "Choose a category to view";
+      } else if (selection === "Private") {
+        menuContainer.classList.add("top-layout");
+        contentContainer.style.display = "grid";
+
+        content.innerText = `Experience premium healthcare in our private wards—personalized attention, luxury amenities, and exclusive care tailored to your comfort and recovery.`;
+
+        extraTextDiv.innerText = `Your health deserves the finest—our private wards offer VIP treatment with dedicated staff, advanced facilities, and a serene healing environment.`;
+
+        // Hospital image on top right (ward1.jpg)
+        const hospitalImg = document.createElement("img");
+        hospitalImg.src = "ward1.jpg"; // Ensure you have ward1.jpg image
+        hospitalImg.alt = "Private Ward Image";
+        hospitalImageDiv.appendChild(hospitalImg);
+
+        // Doctor image bottom right (ward2.jpg)
+        const doctorImg = document.createElement("img");
+        doctorImg.src = "ward2.jpg"; // Ensure you have ward2.jpg image
+        doctorImg.alt = "Private Ward Image";
+        doctorImageDiv.appendChild(doctorImg);
+
+      } else if (selection === "General") {
+        menuContainer.classList.add("top-layout");
+        contentContainer.style.display = "grid";
+
+        content.innerText = `Our General Ward is designed for your recovery and well-being.
+Whether you're recovering from illness, surgery, or need monitored care, our compassionate medical team and modern facilities ensure you receive the best treatment in a safe, hygienic environment.`;
+
+        extraTextDiv.innerText = `Why Choose Our General Ward?
+
+✔ 24/7 Expert Care – Skilled doctors and nurses dedicated to your recovery.
+✔ Spacious & Clean Rooms – Comfortable beds, proper ventilation, and infection-free zones.
+✔ Affordable Rates – Quality healthcare without financial stress.
+✔ Nutritious Meals – Tailored diets to speed up your healing.
+✔ Family Support – Flexible visiting hours and attentive staff.`;
+
+        // Hospital image on top right (nurse1.jpg)
+        const hospitalImg = document.createElement("img");
+        hospitalImg.src = "nurse1.jpg"; // Ensure you have nurse1.jpg image
+        hospitalImg.alt = "Hospital Image";
+        hospitalImageDiv.appendChild(hospitalImg);
+
+        // Doctor image bottom right (nurse2.jpg)
+        const doctorImg = document.createElement("img");
+        doctorImg.src = "nurse2.jpg"; // Ensure you have nurse2.jpg image
+        doctorImg.alt = "Doctor Image";
+        doctorImageDiv.appendChild(doctorImg);
+
+      } else if (selection === "ICU") {
+        menuContainer.classList.add("top-layout");
+        contentContainer.style.display = "grid";
+
+        content.innerText = `Expert care, compassionate healing—our medical team is dedicated to your health around the clock. Trust skilled professionals who put your well-being first.`;
+
+        extraTextDiv.innerText = `Advanced treatment, personalized care—your health is our priority. Experience excellence in medical services with state-of-the-art facilities.`;
+
+        // ICU images (work1.jpg and work2.jpg)
+        const hospitalImg = document.createElement("img");
+        hospitalImg.src = "work1.jpg"; // Ensure you have work1.jpg image
+        hospitalImg.alt = "ICU Image";
+        hospitalImageDiv.appendChild(hospitalImg);
+
+        const doctorImg = document.createElement("img");
+        doctorImg.src = "work2.jpg"; // Ensure you have work2.jpg image
+        doctorImg.alt = "ICU Image";
+        doctorImageDiv.appendChild(doctorImg);
+
+      } else if (selection === "Pediatric") {
+        menuContainer.classList.add("top-layout");
+        contentContainer.style.display = "grid";
+
+        content.innerText = `Expert care, compassionate healing—our pediatric team specializes in keeping children healthy and happy. From check-ups to treatments, we’re here for every milestone.`;
+
+        extraTextDiv.innerText = `A healing environment designed just for kids—where advanced medicine meets warmth and compassion. Because every child deserves the best care possible.`;
+
+        // Pediatric images (ped1.jpg and ped2.jpg)
+        const hospitalImg = document.createElement("img");
+        hospitalImg.src = "ped1.jpg"; // Ensure you have ped1.jpg image
+        hospitalImg.alt = "Pediatric Image";
+        hospitalImageDiv.appendChild(hospitalImg);
+
+        const doctorImg = document.createElement("img");
+        doctorImg.src = "ped2.jpg"; // Ensure you have ped2.jpg image
+        doctorImg.alt = "Pediatric Image";
+        doctorImageDiv.appendChild(doctorImg);
+
+      } else if (selection === "Infectious") {
+        menuContainer.classList.add("top-layout");
+        contentContainer.style.display = "grid";
+
+        content.innerText = `Expert containment and compassionate care—our infectious disease team is trained to handle outbreaks with precision and safety. Your health and community protection are our top priorities.`;
+
+        extraTextDiv.innerText = `Advanced isolation protocols and cutting-edge treatment—we provide secure, specialized care for infectious conditions. Trust in our sterile environment and dedicated medical team for your recovery.`;
+
+        // Infectious images (inf1.jpg and inf2.jpg)
+        const hospitalImg = document.createElement("img");
+        hospitalImg.src = "inf1.jpg"; // Ensure you have inf1.jpg image
+        hospitalImg.alt = "Infectious Image";
+        hospitalImageDiv.appendChild(hospitalImg);
+
+        const doctorImg = document.createElement("img");
+        doctorImg.src = "inf2.jpg"; // Ensure you have inf2.jpg image
+        doctorImg.alt = "Infectious Image";
+        doctorImageDiv.appendChild(doctorImg);
+
+      } else if (selection === "Home") {
+        // For home category, reset to original content
+        menuContainer.classList.add("top-layout");
+        contentContainer.style.display = "grid";
+
+        content.innerText = `Welcome to Medical City Hospital!
+Providing compassionate care with cutting-edge technology.
+Your health and well-being are our top priorities.
+Thank you for trusting us with your care.`;
+
+        extraTextDiv.innerText = "Our Doctors and Nurses at Medical City are the best at their fields.";
+
+        // Hospital image on top right
+        const hospitalImg = document.createElement("img");
+        hospitalImg.src = "Hospital1.jpg"; // Ensure you have Hospital1.jpg image
+        hospitalImg.alt = "Hospital Image";
+        hospitalImageDiv.appendChild(hospitalImg);
+
+        // Doctor image bottom right
+        const doctorImg = document.createElement("img");
+        doctorImg.src = "doc1.jpg"; // Ensure you have doc1.jpg image
+        doctorImg.alt = "Doctor Image";
+        doctorImageDiv.appendChild(doctorImg);
+
+      } else if (selection) {
+        menuContainer.classList.add("top-layout");
+        contentContainer.style.display = "grid";
+
+        hospitalImageDiv.innerHTML = "";
+        doctorImageDiv.innerHTML = "";
+        extraTextDiv.innerText = "";
+        content.innerText = "";
+        imageContainer.style.display = "block";
+
+        let text = "";
+        let imageUrls = [];
+
+        switch (selection) {
+          case "ICU":
+            text = "ICU: Critical care and constant monitoring.";
+            imageUrls = ["https://via.placeholder.com/300x200.png?text=ICU"];
+            break;
+          case "Pediatric":
+            text = "Pediatric Ward: Care for infants and children.";
+            imageUrls = ["https://via.placeholder.com/300x200.png?text=Pediatric"];
+            break;
+          case "Infectious":
+            text = "Infectious Ward: Isolation for contagious diseases.";
+            imageUrls = ["https://via.placeholder.com/300x200.png?text=Infectious"];
+            break;
+          case "Private":
+            text = "Private Ward: Comfortable private rooms.";
+            imageUrls = ["https://via.placeholder.com/300x200.png?text=Private"];
+            break;
+        }
+
+        content.innerText = text;
+
+        // Clear old images
+        categoryImages.innerHTML = "";
+
+        // Show fallback container for category images
+        imageContainer.style.display = "block";
+
+        // Add new images
+        imageUrls.forEach(url => {
+          const img = document.createElement("img");
+          img.src = url;
+          img.alt = "Category Image";
+          categoryImages.appendChild(img);
+        });
+
+      } else {
+        menuContainer.classList.remove("top-layout");
+        contentContainer.style.display = "none";
+      }
+    }
+
+    window.onload = () => {
+      const select = document.getElementById("mySelect");
+      select.value = "placeholder"; // set to placeholder on load
+      
+      document.getElementById("content").innerText = "Choose a category to view";
+      document.getElementById("categoryImages").innerHTML = "";
+      document.getElementById("content-container").style.display = "none";
+
+      document.getElementById("menuContainer").classList.remove("top-layout");
+    };
+  </script>
+</body>
+</html>

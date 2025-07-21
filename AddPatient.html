@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>	
+  <style>
+    body {
+      background-color: rgba(128, 0, 128, 0.3);
+    }
+    .container {
+      width: 300px;
+      height: auto;
+      border: 1px solid black;
+      padding: 10px;
+      margin: 20px auto;
+      background-color: rgba(0, 0, 0, 0.1);
+      text-align: center;
+      font-weight: bold;
+      font-family: Arial, sans-serif;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+      text-align: left;
+      margin-left: 5%;
+    }
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    select {
+      width: 90%;
+      padding: 6px;
+      margin-top: 4px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .radio {
+      margin: 0 10px;
+      font-weight: normal;
+    }
+    button {
+      margin: 8px 5px 0 5px;
+      padding: 8px 15px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .button-primary {
+      background-color: #6200ea;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    .button-danger {
+      background-color: #d32f2f;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    a {
+      text-decoration: none;
+      color: black;
+    }
+  </style>
+</head>
+
+<body>
+
+  <form id="contact-form" class="container" name="contact-form">
+
+    <h4>Add Patient</h4>
+
+    <label for="lastName">Last Name</label>
+    <input id="lastName" type="text" name="Last Name" placeholder="Your Last Name" required>
+
+    <label for="firstName">First Name</label>
+    <input id="firstName" type="text" name="First Name" placeholder="Your First Name" required>
+
+    <label for="middleInitial">Middle Initial</label>
+    <input id="middleInitial" type="text" name="Middle Initial" placeholder="Your Middle Initial" maxlength="1">
+
+    <label for="age">Age</label>
+    <input id="age" type="number" name="Age" placeholder="Your Age" min="0" required>
+
+    <label for="address">Address</label>
+    <input id="address" type="text" name="Address" placeholder="ex. Quezon City" required>
+
+    <label for="contactNo">Contact No</label>
+    <input id="contactNo" type="text" name="Contact No" placeholder="ex. 09123456789" required>
+
+    <label>Gender</label>
+    <label class="radio">
+      <input type="radio" name="Gender" value="Male" required> Male
+    </label>
+    <label class="radio">
+      <input type="radio" name="Gender" value="Female"> Female
+    </label>
+
+    <label for="dob">Date of Birth</label>
+    <input id="dob" type="date" name="DOB" required>
+
+    <label for="ward">Ward</label>
+    <select id="ward" name="Ward" required>
+      <option>ICU</option>
+      <option>General</option>
+      <option>Private</option>
+	   <option>Infectious</option>
+	   <option>Pediatric</option>
+    </select>
+
+    <div style="margin-top: 15px;">
+      <button class="button-primary" type="submit">Add</button>
+      <button class="button-danger" type="button" onclick="document.forms['contact-form'].reset();">Cancel</button>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <button type="button"><a href="javascript:history.back()">Go Back</a></button>
+      <button type="button"><a href="Login.html">Home</a></button>
+    </div>
+  </form>
+<script>
+  document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Stop default form submission
+
+    const form = event.target;
+    const url = 'https://script.google.com/macros/s/AKfycbwmnr4i5PCJob0x_eI1ruBllhorQ7UAEbpQu9j67wDYxXln2cf_GiLZmI9ZEVQ5dVT1/exec';
+
+    const formData = new FormData(form);
+    const params = new URLSearchParams();
+
+    for (const pair of formData) {
+      params.append(pair[0], pair[1]);
+    }
+
+    fetch(url, {
+      method: 'POST',
+      body: params,
+    })
+    .then(response => response.json())
+    .then(data => {
+      if(data.result === 'success'){
+        alert('✅ Success! Patient added.');
+        form.reset(); // Optional: clear form
+      } else {
+        alert('⚠️ Error: ' + (data.error || 'Unknown error'));
+      }
+    })
+    .catch(error => {
+      alert('❌ Network error: ' + error.message);
+    });
+  });
+</script>
+</body>
+</html>
+	
